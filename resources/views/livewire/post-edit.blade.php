@@ -79,7 +79,9 @@
                         @enderror    
 
                         @if ($photo)
-                            <img class="mt-2" src="{{ $photo->temporaryUrl() }}" alt="temp">
+                            {{-- <img class="mt-2" src="{{ $photo->temporaryUrl() }}" alt="temp"> --}}
+                            <img class="mt-2" src="{{ $tempUrl }}" alt="temp">
+
                         @elseif ($post->photo)
                             <img class="mt-2" src="{{ Storage::url($post->photo)}}" alt="photo">
                         @endif

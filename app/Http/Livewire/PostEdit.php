@@ -15,6 +15,7 @@ class PostEdit extends Component
     public $content;
     public $photo;
     public $successMessage;
+    public $tempUrl;
 
     protected $rules = [
         'title' => 'required',
@@ -32,6 +33,12 @@ class PostEdit extends Component
 
     public function updatedPhoto()
     {
+        try {
+            $this->tempUrl = $this->photo->temporaryUrl();
+        } catch (\Exception $e) {
+            $this->tempUrl = '';
+        }
+
         $this->validate();
     }
 
@@ -48,7 +55,6 @@ class PostEdit extends Component
         ]);
 
         $this->successMessage = 'Post updated successfully!';
-
     }
 
 
@@ -56,6 +62,5 @@ class PostEdit extends Component
     {
         return view('livewire.post-edit');
         // ->extends('home', ['post' => $this->post]);
-
     }
 }
